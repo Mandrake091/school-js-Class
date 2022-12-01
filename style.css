@@ -6,9 +6,8 @@
 }
 
 body {
-    background-image: url('https://thumbs.dreamstime.com/b/monochrome-grey-brick-wall-repeating-pattern-162053128.jpg');
-    backdrop-filter: blur(1px);
-    min-height: 100vh;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/004/968/002/original/cute-abstract-modern-background-free-vector.jpg');
+    background-size: cover;
 }
 
 /** HEADER **/
@@ -24,55 +23,63 @@ button {
     font-size: 25px;
     padding: 10px;
     padding-inline: 50px;
-    background-color: black;
-    border: 3px solid white;
-    color: white;
+    background-color: #ccd0e9;
+    border: 3px solid #efc5c6;
+    border-radius: 18px;
+    color: #3f51b5;
     font-weight: 700;
 }
 
 /** MAIN **/
 
 main {
-    border: 3px solid #6464641b;
+    border: 3px solid #ccd0e9;
     background-color: white;
+    border-radius: 20px;
     width: 90%;
     margin: 0 auto;
 }
 
 section {
-    padding: 30px;
+    padding-block: 30px;
+    padding-inline: 10px;
     display: flex;
     min-height: 80vh;
 }
 
-article > *:first-child {
+h3 {
     font-size: 22px;
+    padding-bottom: 10px;
 }
 
-article:first-child {
+ul:first-child {
     border: 0;
 }
 
-article {
+ul {
     list-style: none;
     font-size: 18px;
     flex-wrap: wrap;
     width: calc(100% / 5);
     text-align: center;
-    border-left: 2px dashed grey;
+    border-left: 5px dotted #3f51b5;
+    color: #3f51b5;
+    padding-left: 0;
 }
 
 .student {
     width: 80%;
-    padding-inline: 20px;
     margin: auto;
     margin-block: 5px;
-    height: 80px;
-    background-color: black;
-    color: white;
-    font-size: 25px;
-    font-weight: 700;
+    height: 70px;
+    color: #3f51b5;
+    background-color: #ccd0e9;
+    border: 2px dotted #efc5c6;
+    border-radius: 15px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: hidden;
+    line-height: 15px;
 }

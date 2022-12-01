@@ -6,44 +6,52 @@ let arrClasses = [['Prima','13'],['Seconda','14'],['Terza','15'],['Quarta','16']
 let mapClasses = new Map()
 for (const selectedCLass of arrClasses) {
     mapClasses.set(mapClasses.size,new SchoolClass(...selectedCLass)) 
-    $("#classes").append(`<article id=${mapClasses.size}> <div> Classe ${selectedCLass[0]} </div></article>`);
+    $("#classes").append(`<ul id=${mapClasses.size}><li><h3>${selectedCLass[0]}</h3></li></ul>`);
 }
 
 
 function createStudent() {
-    const student = new Student();
-    for (const attribute in student.attributes) {
-        let attr 
-        do {
-            attr = prompt(`Give me ${attribute}`)
-            switch (student.attributes[attribute].type) {
-                case 'string':
-                    attr = String(attr)
-                    break;
-                case 'number':
-                    attr = Number(attr)
-                    break;
-                case 'date':
-                    attr = new Date(attr)
-                    if (attr == 'Invalid Date') attr = ''
-            }
-        } while (!attr);
-        student[attribute] = attr
+    const student = new Student($('#input-name').val(), $('#input-surname').val(), $('#input-birthday').val());
+
+    let validation = student.validate();
+
+    if(!validation.success) {
+        throw err //alert
     }
-    let selectedCLass
-    do {
-        selectedCLass = prompt(`Give me a class`)
-    } while (!selectedCLass);
-    return [student,selectedCLass]
+
+    switch ($('#input-class').val()) {
+        case '1':
+            
+        break
+        default:
+            throw err //alert
+    }
+
+    // for (const attribute in student.attributes) {
+    //     let attr 
+    //         switch (student.attributes[attribute].type) {
+    //             case 'string':
+    //                 attr = String(attr)
+    //                 break;
+    //             case 'number':
+    //                 attr = Number(attr)
+    //                 break;
+    //             case 'date':
+    //                 attr = new Date(attr)
+    //                 if (attr == 'Invalid Date') attr = ''
+    //         }
+    //     }
+    // }
+    
 }
 
 function renderClass(studentParams) { //QUESTO VA SISTEMATO PER IL NUOVO FE
     $(`#${studentParams[1]}`).append(`
-    <div id=${studentParams[0].id} class="student">
+    <li id=${studentParams[0].id} class="student">
         Name: ${studentParams[0].name} ,
         Surname: ${studentParams[0].surname} ,
         Birthday: ${studentParams[0].birthday.toISOString()} 
-    </div>`);
+    </li>`);
 }
 
 function editStudent(e) {
@@ -54,7 +62,7 @@ function editStudent(e) {
 }
 
 $(document).ready(function(){
-    $('#add').click(function() {
+    $('#new-student').click(function() {
         let student = createStudent()
         mapClasses.get(Number(student[1])).studentClass.push(student[0])
         renderClass(student)
