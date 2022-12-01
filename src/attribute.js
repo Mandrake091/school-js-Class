@@ -35,11 +35,32 @@ class Attribute extends BaseClass {
   }
 
   set type(type) {
-    console.log(`Set ${type} for ${this.#name}`);
     if (!this.allowedTypes.includes(type)) {
       throw `Type ${type} is not allowed`;
     }
     this.#type = type;
+  }
+
+  validate(value) {
+    let success = false;
+    switch (this.type) {
+      case "string": 
+        success = typeof(value) == "string";
+        if (this.required) {
+          success = success && value.replaceAll(" ", "").length > 0;
+        }
+        break;
+      case "number":
+        success = !isNaN(+value);
+        break;
+      case "date":
+        success = !isNaN(Date.parse(value));
+        break;
+      case "class":
+        success = [1, 2, 3, 4, 5].includes(value);
+        break;
+    }
+    return success;
   }
 }
 
