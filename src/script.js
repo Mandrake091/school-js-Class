@@ -6,7 +6,7 @@ let arrClasses = [['Prima','13'],['Seconda','14'],['Terza','15'],['Quarta','16']
 let mapClasses = new Map()
 for (const selectedCLass of arrClasses) {
     mapClasses.set(mapClasses.size,new SchoolClass(...selectedCLass)) 
-    $("#classes").append(`<ul id=${mapClasses.size}><li><h3>${selectedCLass[0]}</h3></li></ul>`);
+    $("#classes").append(`<article><h3>${selectedCLass[0]}</h3><ul id=${mapClasses.size}></ul></article>`);
 }
 
 
