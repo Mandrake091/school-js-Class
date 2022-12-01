@@ -1,13 +1,20 @@
 import { Attribute } from "./attribute.js";
 import { SchoolClass } from "./schoolClass.js";
 import { Student } from "./student.js";
+import { School } from "./school.js";
 
-let arrClasses = [['Prima','13'],['Seconda','14'],['Terza','15'],['Quarta','16'],['Quinta','17'],]
-let mapClasses = new Map()
+
+let arrClasses = [['Prima', '13'], ['Seconda', '14'], ['Terza', '15'], ['Quarta', '16'], ['Quinta', '17'],]
+let school = new School("Scuola generale")
+let i = 0
 for (const selectedCLass of arrClasses) {
-    mapClasses.set(mapClasses.size,new SchoolClass(...selectedCLass)) 
-    $("#classes").append(`<ul id=${mapClasses.size}><li><h3>${selectedCLass[0]}</h3></li></ul>`);
+    let newSchool = new SchoolClass(...selectedCLass)
+    $("#classes").append(`<ul id=${0}><li><h3>${selectedCLass[0]}</h3></li></ul>`); //NON SO SE SERVE
+    school.addSchoolClass(newSchool)
+    i++
 }
+
+debugger
 
 
 function createStudent() {
@@ -15,34 +22,26 @@ function createStudent() {
 
     let validation = student.validate();
 
-    if(!validation.success) {
+    if (!validation.success) {
         throw err //alert
     }
 
     switch ($('#input-class').val()) {
         case '1':
-            
-        break
+
+            break
+        case '2':
+            break 
+        case '3':
+            break 
+        case '4':
+            break 
+        case '5':
+            break
         default:
             throw err //alert
     }
 
-    // for (const attribute in student.attributes) {
-    //     let attr 
-    //         switch (student.attributes[attribute].type) {
-    //             case 'string':
-    //                 attr = String(attr)
-    //                 break;
-    //             case 'number':
-    //                 attr = Number(attr)
-    //                 break;
-    //             case 'date':
-    //                 attr = new Date(attr)
-    //                 if (attr == 'Invalid Date') attr = ''
-    //         }
-    //     }
-    // }
-    
 }
 
 function renderClass(studentParams) { //QUESTO VA SISTEMATO PER IL NUOVO FE
@@ -61,14 +60,14 @@ function editStudent(e) {
     console.log(isStudent)
 }
 
-$(document).ready(function(){
-    $('#new-student').click(function() {
+$(document).ready(function () {
+    $('#new-student').click(function () {
         let student = createStudent()
         mapClasses.get(Number(student[1])).studentClass.push(student[0])
         renderClass(student)
         console.log(mapClasses)
     })
 
-    $(document).on('click', '.student', e=> editStudent(e))
+    $(document).on('click', '.student', e => editStudent(e))
 });
 

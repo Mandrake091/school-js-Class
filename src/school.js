@@ -1,5 +1,5 @@
-import { Attribute } from "./attribute";
-import { BaseClass } from "./baseClass";
+import { Attribute } from "./attribute.js";
+import { BaseClass } from "./baseClass.js";
 
 class School extends BaseClass {
   static #attributes = {
