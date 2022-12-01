@@ -37,7 +37,7 @@ function createStudent() {
     return [student,selectedCLass]
 }
 
-function renderClass(studentParams) {
+function renderClass(studentParams) { //QUESTO VA SISTEMATO PER IL NUOVO FE
     $(`#${studentParams[1]}`).append(`
     <div id=${studentParams[0].id} class="student">
         Name: ${studentParams[0].name} ,
@@ -47,8 +47,8 @@ function renderClass(studentParams) {
 }
 
 function editStudent(e) {
-    let idStudent = e.target.id
-    var idParent = e.target.parentElement.id;
+    let idStudent = e.target.id //id dello studente dove ho appena cliccato 
+    var idParent = e.target.parentElement.id; //id della classe padre (la ClassRoom dello studente)
     let isStudent = mapClasses.get(Number(idParent)).studentClass.find(elem => elem.id == idStudent)
     console.log(isStudent)
 }
