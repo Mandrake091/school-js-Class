@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    background-image: url('https://thumbs.dreamstime.com/b/monochrome-grey-brick-wall-repeating-pattern-162053128.jpg');
+    backdrop-filter: blur(1px);
+    min-height: 100vh;
+}
+
+/** HEADER **/
+
+header {
+    text-align: center;
+    padding: 30px;
+    padding-bottom: 10px;
+}
+
+button {
+    margin-block: 15px;
+    font-size: 25px;
+    padding: 10px;
+    padding-inline: 50px;
+    background-color: black;
+    border: 3px solid white;
+    color: white;
+    font-weight: 700;
+}
+
+/** MAIN **/
+
+main {
+    border: 3px solid #6464641b;
+    background-color: white;
+    width: 90%;
+    margin: 0 auto;
+}
+
+section {
+    padding: 30px;
+    display: flex;
+    min-height: 80vh;
+}
+
+article > *:first-child {
+    font-size: 22px;
+}
+
+article:first-child {
+    border: 0;
+}
+
+article {
+    list-style: none;
+    font-size: 18px;
+    flex-wrap: wrap;
+    width: calc(100% / 5);
+    text-align: center;
+    border-left: 2px dashed grey;
+}
+
+.student {
+    width: 80%;
+    padding-inline: 20px;
+    margin: auto;
+    margin-block: 5px;
+    height: 80px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
