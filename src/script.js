@@ -17,7 +17,7 @@ for (const selectedCLass of arrClasses) {
   let newClassRoom= new SchoolClass(...selectedCLass);
   $("#classes").append(
     `<article><h3>${selectedCLass[0]}</h3><ul id=${i}></ul></article>`
-  ); //NON SO SE SERVE
+  );
   classRoomIds.push(newClassRoom.id)
   school.addSchoolClass(newClassRoom);
   i++;
@@ -91,6 +91,5 @@ $(document).ready(function () {
     let selClass = $('#input-class').val()
     renderClass(selClass)
   });
-
   $(document).on("click", ".student", (e) => editStudent(e));
 });
