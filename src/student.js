@@ -50,17 +50,6 @@ class Student extends BaseClass {
     this.#birthday = new Date(birthdayString)
   }
 
-  getAge() {
-
-    // calcola la diffeerenza tra le due date
-    const datesDiff = this.#birthday - new Date(this.#birthday);
-
-    // converte la differenza in data, estraendone l'anno (+1970)
-    const year = new Date(datesDiff).getUTCFullYear();
-
-    // restituisce l'età
-    return Math.abs(year - 1970);
-  }
 }
 
 export { Student };

@@ -76,11 +76,12 @@ function renderClass(selClass) {
     }
 }
 
-function editStudent(e, elementStudent) {
+function editStudent(elementStudent) {
+
     let idStudent = elementStudent.currentTarget.id; //id dello studente dove ho appena cliccato
 
     let positionIdClass = elementStudent.target.parentElement.parentElement.id; //questo è l'id della classe
-    debugger
+
     let editNameInput = $("#edit-name").val();
     let editSurnameInput = $("#edit-surname").val();
     let editBirthdayInput = $("#edit-birthday").val();
@@ -89,11 +90,11 @@ function editStudent(e, elementStudent) {
     let newStudent = new Student(editNameInput, editSurnameInput, editBirthdayInput);
     newStudent.validate();
 
-    let newMap = school.students
+    // let newMap = school.students
     
     school.removeStudent(idStudent)
     if(positionIdClass !== newClassHTMLId - 1){
-        renderClass(positionIdClass + 1)
+        renderClass(parseInt(positionIdClass) + 1)
     }
 
     school.addStudent(newStudent);
@@ -105,6 +106,7 @@ function editStudent(e, elementStudent) {
 $(document).ready(function () {
 
     let modal = $("#exampleModal");
+    let modal2 = $("#exampleModal2"); 
 
     $("#form-student").submit(function (event) {
         event.preventDefault();
@@ -117,21 +119,15 @@ $(document).ready(function () {
     let idClickedStudent;
 
     $(document).on("click", ".student", (e) => (idClickedStudent = e));
-    $("#form-student-edit").submit((e) => editStudent(e, idClickedStudent));
-
-    let nameStudent = e.target.textContent;
-    $("#exampleModalLabel2")[0].innerText = nameStudent;
-
-    let idClass = e.target.parentElement.id;
+    $("#form-student-edit").submit((e) => editStudent(idClickedStudent));
 
     $("#form-student-edit").submit(function (event) {
         event.preventDefault();
-        modal.modal( "hide" );
+        modal2.modal( "hide" );
         let editNameInput = $("#edit-name").val();
         let editSurnameInput = $("#edit-surname").val();
         let editBirthdayInput = $("#edit-birthday").val();
-        console.log(idClass);
-        // modal.find("input").val('').end(); DA AGGIUNGERE
+        modal2.find("input").val('').end();
     });
 })
 
