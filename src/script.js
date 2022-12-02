@@ -81,6 +81,8 @@ function editStudent(e) {
 
   let nameStudent = e.target.textContent;
 
+  let modal = $("#exampleModal");
+
   $("#exampleModalLabel2")[0].innerText = nameStudent;
 
   let idClass = e.target.parentElement.id;
@@ -88,18 +90,41 @@ function editStudent(e) {
   debugger;
   $("#form-student-edit").submit(function (event) {
     event.preventDefault();
+    modal.modal( "hide" );
     let editNameInput = $("#edit-name").val();
     let editSurnameInput = $("#edit-surname").val();
     let editBirthdayInput = $("#edit-birthday").val();
     console.log(idClass);
+    // modal.find("input").val('').end(); DA AGGIUNGERE
   });
 }
 
 $(document).ready(function () {
-  $("#form-student").submit(function (event) {
-    createStudent();
-    let selClass = $("#input-class").val();
-    renderClass(selClass);
-  });
-  $(document).on("click", ".student", (e) => editStudent(e));
+    let modal = $("#exampleModal");
+    $("#form-student").submit(function (event) {
+        event.preventDefault();
+        modal.modal( "hide" );
+        createStudent();
+        let selClass = $("#input-class").val();
+        renderClass(selClass);
+        modal.find("input").val('').end();
+    });
+    $(document).on("click", ".student", (e) => editStudent(e));
+});
+
+function error1(error) {
+    $('#error-message').css('display', 'block');
+    $('error-text').text = error;
+} 
+function error2(error) {
+    $('#error-message2').css('display', 'block');
+    $('error-text2').text = error;
+} 
+
+$('#close-error').click(function () {
+    $('#error-message').css('display', 'none');
+});
+
+$('#close-error2').click(function () {
+    $('#error-message2').css('display', 'none');
 });
