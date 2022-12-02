@@ -25,18 +25,13 @@ class School extends BaseClass {
 
   get classes() {
     const joinedMap = new Map();
-    this.#classes.forEach((schoolClassId) => {
+    this.#classes.forEach((schoolClass, schoolClassId) => {
       const selClass = {
         class: this.#classes.get(schoolClassId),
         students: new Map(),
       };
-      this.#studentsInClasses.find((studentsInClasses, studentId) => {
-        if (studentsInClasses.id == schoolClassId) {
-          selClass.students.set(studentId, this.#students.get(studentId));
-        }
-      });
-      this.#studentsInClasses.forEach((studentsInClasses, studentId) => {
-        if (studentsInClasses === schoolClassId) {
+      this.#studentsInClasses.forEach((studentSchoolClassId, studentId) => {
+        if (studentSchoolClassId === schoolClassId) {
           selClass.students.set(studentId, this.#students.get(studentId));
         }
       });

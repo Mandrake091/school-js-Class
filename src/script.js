@@ -42,7 +42,6 @@ function createStudent() {
   switch ($("#input-class").val()) {
     case "1":
         school.addStudentToSchoolClass(student.id, classRoomIds[0])
-        debugger
       break;
     case "2":
         school.addStudentToSchoolClass(student.id, classRoomIds[1])
@@ -61,12 +60,20 @@ function createStudent() {
   }
 }
 
-function renderClass(studentParams) {
-  //QUESTO VA SISTEMATO PER IL NUOVO FE
-  $(`#${studentParams[1]}`).append(`
-    <li id=${studentParams[0].id} class="student"> ${studentParams[0].name} ${studentParams[0].surname}
-        <div> ${studentParams[0].birthday.toISOString()} </div> 
+function renderClass(selClass) {
+  let entriesClasses = Array.from( school.classes.keys() );
+  let id = entriesClasses[selClass-1]
+  let currentClass = [...school.classes.values()].find(elem => elem.class.id == id)
+  if ($(`#${selClass-1}`)[0].childElementCount>0) {
+    $(`#${selClass-1}`).empty()
+  }
+  for (const student of currentClass.students.values()) {
+  $(`#${selClass-1}`).append(`
+    <li id=${student.id} class="student"> ${student.name} ${student.surname}
+        <div> ${student.birthday} </div> 
     </li>`);
+  }
+  
 }
 
 function editStudent(e) {
@@ -80,11 +87,9 @@ function editStudent(e) {
 
 $(document).ready(function () {
   $("#form-student").submit(function (event) {
-    event.preventDefault();
-    let student = createStudent();
-    mapClasses.get(Number(student[1])).studentClass.push(student[0]); //VA Sistemato questo
-    renderClass(student);
-    console.log(mapClasses);
+    createStudent()
+    let selClass = $('#input-class').val()
+    renderClass(selClass)
   });
 
   $(document).on("click", ".student", (e) => editStudent(e));
