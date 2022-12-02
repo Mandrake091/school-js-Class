@@ -64,18 +64,30 @@ function createStudent() {
 function renderClass(studentParams) {
   //QUESTO VA SISTEMATO PER IL NUOVO FE
   $(`#${studentParams[1]}`).append(`
-    <li id=${studentParams[0].id} class="student"> ${studentParams[0].name} ${studentParams[0].surname}
+    <li id=${studentParams[0].id} class="student" data-bs-toggle="modal" data-bs-target="#exampleModal2"> 
+        ${studentParams[0].name} ${studentParams[0].surname}
         <div> ${studentParams[0].birthday.toISOString()} </div> 
     </li>`);
 }
 
 function editStudent(e) {
   let idStudent = e.target.id; //id dello studente dove ho appena cliccato
-  var idParent = e.target.parentElement.id; //id della classe padre (la ClassRoom dello studente)
-  let isStudent = mapClasses
-    .get(Number(idParent))
-    .studentClass.find((elem) => elem.id == idStudent);
-  console.log(isStudent);
+
+  let nameStudent = e.target.textContent;
+
+  $('#exampleModalLabel2')[0].innerText = nameStudent;
+
+  let idClass = e.target.parentElement.id;
+
+  debugger
+  $('#form-student-edit').submit(function (event) {
+    event.preventDefault();
+        let editNameInput = $('#edit-name').val();
+        let editSurnameInput = $('#edit-surname').val();
+        let editBirthdayInput = $('#edit-birthday').val();
+        console.log(idClass);
+        
+    })
 }
 
 $(document).ready(function () {
