@@ -55,10 +55,8 @@ function createStudent() {
 function renderClass(studentParams) {
   //QUESTO VA SISTEMATO PER IL NUOVO FE
   $(`#${studentParams[1]}`).append(`
-    <li id=${studentParams[0].id} class="student">
-        Name: ${studentParams[0].name} ,
-        Surname: ${studentParams[0].surname} ,
-        Birthday: ${studentParams[0].birthday.toISOString()} 
+    <li id=${studentParams[0].id} class="student"> ${studentParams[0].name} ${studentParams[0].surname}
+        <div> ${studentParams[0].birthday.toISOString()} </div> 
     </li>`);
 }
 
@@ -72,7 +70,8 @@ function editStudent(e) {
 }
 
 $(document).ready(function () {
-  $("#new-student").click(function () {
+  $("#form-student").submit(function (event) {
+    event.preventDefault();
     let student = createStudent();
     mapClasses.get(Number(student[1])).studentClass.push(student[0]);
     renderClass(student);

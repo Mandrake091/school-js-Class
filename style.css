@@ -71,6 +71,8 @@ h3 {
     font-size: 22px;
     padding-bottom: 10px;
     font-weight: 900;
+    box-shadow: 0 9px 11px -2px #3f51b536;
+    border-radius: 10px;
 }
 
 article:first-child {
@@ -91,6 +93,7 @@ ul {
     overflow-y: auto;
     padding-left: 0;
     height: 550px;
+    /* box-shadow: inset 0 -9px 11px -2px #3f51b536; */
 }
 
 .student {
