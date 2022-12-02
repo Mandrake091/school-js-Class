@@ -11,7 +11,7 @@ class Student extends BaseClass {
   #surname;
   #birthday;
 
-  constructor(
+  constructor( //costruttore
     name,
     surname,
     birthdayString,

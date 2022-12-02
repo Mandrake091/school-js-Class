@@ -3,20 +3,20 @@ import { SchoolClass } from "./schoolClass.js";
 import { Student } from "./student.js";
 import { School } from "./school.js";
 
-let arrClasses = [
-    ["Prima", "13"],
-    ["Seconda", "14"],
-    ["Terza", "15"],
-    ["Quarta", "16"],
-    ["Quinta", "17"],
+let arrClasses = [ 
+    ["Class 1", "13"],
+    ["Class 2", "14"],
+    ["Class 3", "15"],
+    ["Class 4", "16"],
+    ["Class 5", "17"],
 ];
 let school = new School("Scuola generale");
 let i = 0;
-let classRoomIds = [];
-for (const selectedCLass of arrClasses) {
+let classRoomIds = []; //Array per avere gli id di ogni classe che sono diversi ad ogni refresh di pagina
+for (const selectedCLass of arrClasses) { //Ciclo per creare le classi e aggiungerle alla classescuola
     let newClassRoom = new SchoolClass(...selectedCLass);
     $("#classes").append(
-        `<article><h3>${selectedCLass[0]}</h3><ul id=${i}></ul></article>`
+        `<article><h3>${selectedCLass[0]}</h3><ul id=${i}></ul></article>`  
     );
     classRoomIds.push(newClassRoom.id);
     school.addSchoolClass(newClassRoom);
@@ -24,23 +24,23 @@ for (const selectedCLass of arrClasses) {
 }
 
 function createStudent() {
-    const student = new Student(
+    const student = new Student( //dichiarazione di un nuovo studente
         $("#input-name").val(),
         $("#input-surname").val(),
         $("#input-birthday").val()
     );
 
-    let validation = student.validate();
+    let validation = student.validate(); //Validazione dello studente
 
     if (!validation.success) {
-        throw err; //alert va fatto qualcosa graficamente
+        throw error1('Assicurati di aver inserito correttamente i dati'); //alert va fatto qualcosa graficamente
     }
 
-    school.addStudent(student);
+    school.addStudent(student); //aggiunta di studente alla scuola
 
     switch ($("#input-class").val()) {
         case "1":
-            school.addStudentToSchoolClass(student.id, classRoomIds[0]);
+            school.addStudentToSchoolClass(student.id, classRoomIds[0]); 
             break;
         case "2":
             school.addStudentToSchoolClass(student.id, classRoomIds[1]);
@@ -55,11 +55,11 @@ function createStudent() {
             school.addStudentToSchoolClass(student.id, classRoomIds[4]);
             break;
         default:
-            throw err; //alert
+            throw error1('Assicurati di aver inserito un campo valido per la classe');  //alert
     }
 }
 
-function renderClass(selClass) {
+function renderClass(selClass) {                            // rendering di classe
     let entriesClasses = Array.from(school.classes.keys());
     let id = entriesClasses[selClass - 1];
     let currentClass = [...school.classes.values()].find(
@@ -76,10 +76,9 @@ function renderClass(selClass) {
     }
 }
 
-function editStudent(elementStudent) {
+function editStudent(elementStudent) {      //edit di student
 
     let idStudent = elementStudent.currentTarget.id; //id dello studente dove ho appena cliccato
-
     let positionIdClass = elementStudent.target.parentElement.parentElement.id; //questo è l'id della classe
 
     let editNameInput = $("#edit-name").val();
@@ -89,17 +88,15 @@ function editStudent(elementStudent) {
 
     let newStudent = new Student(editNameInput, editSurnameInput, editBirthdayInput);
     newStudent.validate();
-
-    // let newMap = school.students
-    
-    school.removeStudent(idStudent)
+     
+    school.removeStudent(idStudent);   //rimuove lo studente editato da scuola
     if(positionIdClass !== newClassHTMLId - 1){
-        renderClass(parseInt(positionIdClass) + 1)
+        renderClass(parseInt(positionIdClass) + 1);
     }
 
-    school.addStudent(newStudent);
+    school.addStudent(newStudent);  //ne crea uno nuovo seguendo i nuovi dati del form
     school.addStudentToSchoolClass(newStudent.id, classRoomIds[newClassHTMLId - 1]);
-    renderClass($("#edit-class").val());
+    renderClass($("#edit-class").val());  
 
 }
 
@@ -108,7 +105,7 @@ $(document).ready(function () {
     let modal = $("#exampleModal");
     let modal2 = $("#exampleModal2"); 
 
-    $("#form-student").submit(function (event) {
+    $("#form-student").submit(function (event) {  //form di createStudent()
         event.preventDefault();
         modal.modal( "hide" );
         createStudent();
@@ -121,7 +118,7 @@ $(document).ready(function () {
     $(document).on("click", ".student", (e) => (idClickedStudent = e));
     $("#form-student-edit").submit((e) => editStudent(idClickedStudent));
 
-    $("#form-student-edit").submit(function (event) {
+    $("#form-student-edit").submit(function (event) {  //form di editStudent()
         event.preventDefault();
         modal2.modal( "hide" );
         let editNameInput = $("#edit-name").val();
@@ -132,7 +129,7 @@ $(document).ready(function () {
 })
 
 
-// ROBA DI FE
+// funzioni di FrontEnd
 function error1(error) {
     $('#error-message').css('display', 'block');
     $('error-text').text = error;
