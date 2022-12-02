@@ -12,16 +12,17 @@ let arrClasses = [
 ];
 let school = new School("Scuola generale");
 let i = 0;
+let classRoomIds = []
 for (const selectedCLass of arrClasses) {
-  let newSchool = new SchoolClass(...selectedCLass);
+  let newClassRoom= new SchoolClass(...selectedCLass);
   $("#classes").append(
-    `<article><h3>${selectedCLass[0]}</h3><ul id=${mapClasses.size}></ul></article>`
+    `<article><h3>${selectedCLass[0]}</h3><ul id=${i}></ul></article>`
   ); //NON SO SE SERVE
-  school.addSchoolClass(newSchool);
+  classRoomIds.push(newClassRoom.id)
+  school.addSchoolClass(newClassRoom);
   i++;
 }
 
-debugger;
 
 function createStudent() {
   const student = new Student(
@@ -36,16 +37,24 @@ function createStudent() {
     throw err; //alert
   }
 
+  school.addStudent(student)
+
   switch ($("#input-class").val()) {
     case "1":
+        school.addStudentToSchoolClass(student.id, classRoomIds[0])
+        debugger
       break;
     case "2":
+        school.addStudentToSchoolClass(student.id, classRoomIds[1])
       break;
     case "3":
+        school.addStudentToSchoolClass(student.id, classRoomIds[2])
       break;
     case "4":
+        school.addStudentToSchoolClass(student.id, classRoomIds[3])
       break;
     case "5":
+        school.addStudentToSchoolClass(student.id, classRoomIds[4])
       break;
     default:
       throw err; //alert
@@ -74,7 +83,7 @@ function editStudent(e) {
 $(document).ready(function () {
   $("#new-student").click(function () {
     let student = createStudent();
-    mapClasses.get(Number(student[1])).studentClass.push(student[0]);
+    mapClasses.get(Number(student[1])).studentClass.push(student[0]); //VA Sistemato questo
     renderClass(student);
     console.log(mapClasses);
   });
