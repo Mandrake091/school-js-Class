@@ -30,6 +30,22 @@ button {
     font-weight: 700;
 }
 
+.modal {
+    color: #3f51b5;
+}
+
+#new-student {
+    background-color: #3f51b5;
+    color: #ccd0e9;
+    border: #ccd0e9;
+}
+
+.modal .btn-secondary {
+    background-color: #ccd0e9;
+    color: #3f51b5;
+    border: #3f51b5;
+}
+
 /** MAIN **/
 
 main {
@@ -44,19 +60,24 @@ section {
     padding-block: 30px;
     padding-inline: 10px;
     display: flex;
-    min-height: 80vh;
+    min-height: 70vh;
+}
+
+h1 {
+    color: #3f51b5;
 }
 
 h3 {
     font-size: 22px;
     padding-bottom: 10px;
+    font-weight: 900;
 }
 
-ul:first-child {
+article:first-child {
     border: 0;
 }
 
-ul {
+article {
     list-style: none;
     font-size: 18px;
     flex-wrap: wrap;
@@ -64,22 +85,70 @@ ul {
     text-align: center;
     border-left: 5px dotted #3f51b5;
     color: #3f51b5;
+}
+
+ul {
+    overflow-y: auto;
     padding-left: 0;
+    height: 550px;
 }
 
 .student {
     width: 80%;
     margin: auto;
-    margin-block: 5px;
+    margin-block: 20px;
     height: 70px;
-    color: #3f51b5;
-    background-color: #ccd0e9;
-    border: 2px dotted #efc5c6;
+    color: #00189b;
+    /* background-color: #ccd0e9; */
+    border: 3px solid #3f51b5;
     border-radius: 15px;
     font-size: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow-y: hidden;
     line-height: 15px;
+    cursor: pointer;
+    background-image: url('https://media1.thehungryjpeg.com/thumbs2/ori_3875376_fs3ugi4zh6pq9nmhttlk1wku7f472qik29m6hf9o_female-face-seamless-pattern-modern-continuous-one-line-minimalist-wo.jpg');
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.15), 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    font-weight: 600;
+    background-size: auto 150px;
+    text-shadow: 1px 1px white;
+}
+
+.student > div {
+    font-size: 15px;
+}
+
+.student:hover {
+    animation: rotate 3.5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -150px 0;
+    }
+}
+
+ul::-webkit-scrollbar {
+    background-color: #ccd0e9;
+    width: 6px;
+    height: 8px;
+}
+
+ul::-webkit-scrollbar-track {
+    background-color:#ccd0e9;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background-color: #3f51b5;
+    border-radius: 50px;
+}
+
+ul::-webkit-scrollbar-button {
+    display:none;
 }

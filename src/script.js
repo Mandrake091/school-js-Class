@@ -8,10 +8,12 @@ let arrClasses = [['Prima', '13'], ['Seconda', '14'], ['Terza', '15'], ['Quarta'
 let school = new School("Scuola generale")
 let i = 0
 for (const selectedCLass of arrClasses) {
-    let newSchool = new SchoolClass(...selectedCLass)
-    $("#classes").append(`<ul id=${0}><li><h3>${selectedCLass[0]}</h3></li></ul>`); //NON SO SE SERVE
-    school.addSchoolClass(newSchool)
-    i++
+    // let newSchool = new SchoolClass(...selectedCLass)
+    // $("#classes").append(`<ul id=${0}><li><h3>${selectedCLass[0]}</h3></li></ul>`); //NON SO SE SERVE
+    // school.addSchoolClass(newSchool)
+    // i++
+    mapClasses.set(mapClasses.size,new SchoolClass(...selectedCLass)) 
+    $("#classes").append(`<article><h3>${selectedCLass[0]}</h3><ul id=${mapClasses.size}></ul></article>`);
 }
 
 debugger
