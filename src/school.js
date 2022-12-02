@@ -80,6 +80,12 @@ class School extends BaseClass {
     }
     this.#studentsInClasses.set(studentId, schoolClassId);
   }
+
+  removeStudent(studentId){ //per gestire l'edit abbiamo bisogno che elimini lo studente vecchio e aggiorni la mappa StudentClass
+
+    this.#students.delete(+studentId) 
+    this.#studentsInClasses.delete(+studentId)
+  }
 }
 
 export { School };
