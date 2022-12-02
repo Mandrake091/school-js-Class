@@ -17,7 +17,7 @@ for (const selectedCLass of arrClasses) {
   let newClassRoom= new SchoolClass(...selectedCLass);
   $("#classes").append(
     `<article><h3>${selectedCLass[0]}</h3><ul id=${i}></ul></article>`
-  ); //NON SO SE SERVE
+  );
   classRoomIds.push(newClassRoom.id)
   school.addSchoolClass(newClassRoom);
   i++;
@@ -42,7 +42,8 @@ function createStudent() {
   switch ($("#input-class").val()) {
     case "1":
         school.addStudentToSchoolClass(student.id, classRoomIds[0])
-        debugger
+        //rendering per classe
+        
       break;
     case "2":
         school.addStudentToSchoolClass(student.id, classRoomIds[1])
@@ -81,11 +82,7 @@ function editStudent(e) {
 $(document).ready(function () {
   $("#form-student").submit(function (event) {
     event.preventDefault();
-    let student = createStudent();
-    mapClasses.get(Number(student[1])).studentClass.push(student[0]); //VA Sistemato questo
-    renderClass(student);
-    console.log(mapClasses);
+    createStudent();
   });
-
   $(document).on("click", ".student", (e) => editStudent(e));
 });
