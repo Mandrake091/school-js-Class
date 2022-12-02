@@ -30,6 +30,22 @@ button {
     font-weight: 700;
 }
 
+.modal {
+    color: #3f51b5;
+}
+
+#new-student {
+    background-color: #3f51b5;
+    color: #ccd0e9;
+    border: #ccd0e9;
+}
+
+.modal .btn-secondary {
+    background-color: #ccd0e9;
+    color: #3f51b5;
+    border: #3f51b5;
+}
+
 /** MAIN **/
 
 main {
@@ -44,7 +60,11 @@ section {
     padding-block: 30px;
     padding-inline: 10px;
     display: flex;
-    min-height: 80vh;
+    min-height: 70vh;
+}
+
+h1 {
+    color: #3f51b5;
 }
 
 h3 {
@@ -70,7 +90,7 @@ article {
 ul {
     overflow-y: auto;
     padding-left: 0;
-    height: 650px;
+    height: 550px;
 }
 
 .student {
