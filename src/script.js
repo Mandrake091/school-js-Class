@@ -12,17 +12,16 @@ let arrClasses = [
 ];
 let school = new School("Scuola generale");
 let i = 0;
-let classRoomIds = []
+let classRoomIds = [];
 for (const selectedCLass of arrClasses) {
-  let newClassRoom= new SchoolClass(...selectedCLass);
+  let newClassRoom = new SchoolClass(...selectedCLass);
   $("#classes").append(
     `<article><h3>${selectedCLass[0]}</h3><ul id=${i}></ul></article>`
   );
-  classRoomIds.push(newClassRoom.id)
+  classRoomIds.push(newClassRoom.id);
   school.addSchoolClass(newClassRoom);
   i++;
 }
-
 
 function createStudent() {
   const student = new Student(
@@ -37,23 +36,23 @@ function createStudent() {
     throw err; //alert
   }
 
-  school.addStudent(student)
+  school.addStudent(student);
 
   switch ($("#input-class").val()) {
     case "1":
-        school.addStudentToSchoolClass(student.id, classRoomIds[0])
+      school.addStudentToSchoolClass(student.id, classRoomIds[0]);
       break;
     case "2":
-        school.addStudentToSchoolClass(student.id, classRoomIds[1])
+      school.addStudentToSchoolClass(student.id, classRoomIds[1]);
       break;
     case "3":
-        school.addStudentToSchoolClass(student.id, classRoomIds[2])
+      school.addStudentToSchoolClass(student.id, classRoomIds[2]);
       break;
     case "4":
-        school.addStudentToSchoolClass(student.id, classRoomIds[3])
+      school.addStudentToSchoolClass(student.id, classRoomIds[3]);
       break;
     case "5":
-        school.addStudentToSchoolClass(student.id, classRoomIds[4])
+      school.addStudentToSchoolClass(student.id, classRoomIds[4]);
       break;
     default:
       throw err; //alert
@@ -61,35 +60,46 @@ function createStudent() {
 }
 
 function renderClass(selClass) {
-  let entriesClasses = Array.from( school.classes.keys() );
-  let id = entriesClasses[selClass-1]
-  let currentClass = [...school.classes.values()].find(elem => elem.class.id == id)
-  if ($(`#${selClass-1}`)[0].childElementCount>0) {
-    $(`#${selClass-1}`).empty()
+  let entriesClasses = Array.from(school.classes.keys());
+  let id = entriesClasses[selClass - 1];
+  let currentClass = [...school.classes.values()].find(
+    (elem) => elem.class.id == id
+  );
+  if ($(`#${selClass - 1}`)[0].childElementCount > 0) {
+    $(`#${selClass - 1}`).empty();
   }
   for (const student of currentClass.students.values()) {
-  $(`#${selClass-1}`).append(`
-    <li id=${student.id} class="student"> ${student.name} ${student.surname}
+    $(`#${selClass - 1}`).append(`
+    <li id=${student.id} class="student" data-bs-toggle="modal" data-bs-target="#exampleModal2"> ${student.name} ${student.surname}
         <div> ${student.birthday} </div> 
     </li>`);
   }
-  
 }
 
 function editStudent(e) {
   let idStudent = e.target.id; //id dello studente dove ho appena cliccato
-  var idParent = e.target.parentElement.id; //id della classe padre (la ClassRoom dello studente)
-  let isStudent = mapClasses
-    .get(Number(idParent))
-    .studentClass.find((elem) => elem.id == idStudent);
-  console.log(isStudent);
+
+  let nameStudent = e.target.textContent;
+
+  $("#exampleModalLabel2")[0].innerText = nameStudent;
+
+  let idClass = e.target.parentElement.id;
+
+  debugger;
+  $("#form-student-edit").submit(function (event) {
+    event.preventDefault();
+    let editNameInput = $("#edit-name").val();
+    let editSurnameInput = $("#edit-surname").val();
+    let editBirthdayInput = $("#edit-birthday").val();
+    console.log(idClass);
+  });
 }
 
 $(document).ready(function () {
   $("#form-student").submit(function (event) {
-    createStudent()
-    let selClass = $('#input-class').val()
-    renderClass(selClass)
+    createStudent();
+    let selClass = $("#input-class").val();
+    renderClass(selClass);
   });
   $(document).on("click", ".student", (e) => editStudent(e));
 });

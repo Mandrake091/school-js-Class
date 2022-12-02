@@ -23,7 +23,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add a new student</h5>
                     </div>
                     <div class="modal-body">
                         <!-- Modal content -->
@@ -54,7 +54,122 @@
         
     </header>
     <main>
+        <!-- MODAL EDIT -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel2"></h5>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Modal content -->
+                        <form id="form-student-edit" method="dialog">
+                            <div class="mb-3">
+                                <label for="edit-name" class="form-label">Name:</label>
+                                <input type="text" class="form-control" id="edit-name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-surname" class="form-label">Surname:</label>
+                                <input type="text" class="form-control" id="edit-surname" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-birthday" class="form-label">Birthday:</label>
+                                <input type="text" class="form-control" id="edit-birthday" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edit-class" class="form-label">School Class:</label>
+                                <input type="text" class="form-control" id="edit-class" required>
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="edit-student" class="btn btn-dark">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <section id ='classes'>
+            <article>
+                <h3>Prima</h3>
+                <ul>
+                    <li class="student" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="123456">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+                    <li class="student">Giovanni Mucciaccia <div>1999/99/99</div></li>
+
+                </ul>
+            </article>
+            <!-- <article>
+                <h3>Seconda</h3>
+                <ul>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Terza</h3>
+                <ul>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Quarta</h3>
+                <ul>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Quinta</h3>
+                <ul>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                    <li class="student">Giovanni Mucciaccia</li>
+                </ul>
+            </article> -->
         </section>
     </main>
     <script type="module" src="src/script.js"></script>
