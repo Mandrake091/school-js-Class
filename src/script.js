@@ -132,11 +132,11 @@ $(document).ready(function () {
 // funzioni di FrontEnd
 function error1(error) {
     $('#error-message').css('display', 'block');
-    $('error-text').text = error;
+    $('#error-text').text = error;
 } 
 function error2(error) {
     $('#error-message2').css('display', 'block');
-    $('error-text2').text = error;
+    $('#error-text2').text = error;
 } 
 
 $('#close-error').click(function () {
