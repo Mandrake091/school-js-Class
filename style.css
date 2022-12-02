@@ -155,3 +155,7 @@ ul::-webkit-scrollbar-thumb {
 ul::-webkit-scrollbar-button {
     display:none;
 }
+
+#error-message, #error-message2 {
+    display: none;
+}

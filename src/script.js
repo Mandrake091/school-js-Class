@@ -103,13 +103,53 @@ function editStudent(e, elementStudent) {
 }
 
 $(document).ready(function () {
+
+    let modal = $("#exampleModal");
+
     $("#form-student").submit(function (event) {
+        event.preventDefault();
+        modal.modal( "hide" );
         createStudent();
         let selClass = $("#input-class").val();
         renderClass(selClass);
+        modal.find("input").val('').end();
     });
     let idClickedStudent;
+
     $(document).on("click", ".student", (e) => (idClickedStudent = e));
     $("#form-student-edit").submit((e) => editStudent(e, idClickedStudent));
 
+    let nameStudent = e.target.textContent;
+    $("#exampleModalLabel2")[0].innerText = nameStudent;
+
+    let idClass = e.target.parentElement.id;
+
+    $("#form-student-edit").submit(function (event) {
+        event.preventDefault();
+        modal.modal( "hide" );
+        let editNameInput = $("#edit-name").val();
+        let editSurnameInput = $("#edit-surname").val();
+        let editBirthdayInput = $("#edit-birthday").val();
+        console.log(idClass);
+        // modal.find("input").val('').end(); DA AGGIUNGERE
+    });
+})
+
+
+// ROBA DI FE
+function error1(error) {
+    $('#error-message').css('display', 'block');
+    $('error-text').text = error;
+} 
+function error2(error) {
+    $('#error-message2').css('display', 'block');
+    $('error-text2').text = error;
+} 
+
+$('#close-error').click(function () {
+    $('#error-message').css('display', 'none');
+});
+
+$('#close-error2').click(function () {
+    $('#error-message2').css('display', 'none');
 });
