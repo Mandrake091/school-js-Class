@@ -3,51 +3,58 @@ import { SchoolClass } from "./schoolClass.js";
 import { Student } from "./student.js";
 import { School } from "./school.js";
 
-
-let arrClasses = [['Prima', '13'], ['Seconda', '14'], ['Terza', '15'], ['Quarta', '16'], ['Quinta', '17'],]
-let school = new School("Scuola generale")
-let i = 0
+let arrClasses = [
+  ["Prima", "13"],
+  ["Seconda", "14"],
+  ["Terza", "15"],
+  ["Quarta", "16"],
+  ["Quinta", "17"],
+];
+let school = new School("Scuola generale");
+let i = 0;
 for (const selectedCLass of arrClasses) {
-    // let newSchool = new SchoolClass(...selectedCLass)
-    // $("#classes").append(`<ul id=${0}><li><h3>${selectedCLass[0]}</h3></li></ul>`); //NON SO SE SERVE
-    // school.addSchoolClass(newSchool)
-    // i++
-    mapClasses.set(mapClasses.size,new SchoolClass(...selectedCLass)) 
-    $("#classes").append(`<article><h3>${selectedCLass[0]}</h3><ul id=${mapClasses.size}></ul></article>`);
+  let newSchool = new SchoolClass(...selectedCLass);
+  $("#classes").append(
+    `<article><h3>${selectedCLass[0]}</h3><ul id=${mapClasses.size}></ul></article>`
+  ); //NON SO SE SERVE
+  school.addSchoolClass(newSchool);
+  i++;
 }
 
-debugger
-
+debugger;
 
 function createStudent() {
-    const student = new Student($('#input-name').val(), $('#input-surname').val(), $('#input-birthday').val());
+  const student = new Student(
+    $("#input-name").val(),
+    $("#input-surname").val(),
+    $("#input-birthday").val()
+  );
 
-    let validation = student.validate();
+  let validation = student.validate();
 
-    if (!validation.success) {
-        throw err //alert
-    }
+  if (!validation.success) {
+    throw err; //alert
+  }
 
-    switch ($('#input-class').val()) {
-        case '1':
-
-            break
-        case '2':
-            break 
-        case '3':
-            break 
-        case '4':
-            break 
-        case '5':
-            break
-        default:
-            throw err //alert
-    }
-
+  switch ($("#input-class").val()) {
+    case "1":
+      break;
+    case "2":
+      break;
+    case "3":
+      break;
+    case "4":
+      break;
+    case "5":
+      break;
+    default:
+      throw err; //alert
+  }
 }
 
-function renderClass(studentParams) { //QUESTO VA SISTEMATO PER IL NUOVO FE
-    $(`#${studentParams[1]}`).append(`
+function renderClass(studentParams) {
+  //QUESTO VA SISTEMATO PER IL NUOVO FE
+  $(`#${studentParams[1]}`).append(`
     <li id=${studentParams[0].id} class="student">
         Name: ${studentParams[0].name} ,
         Surname: ${studentParams[0].surname} ,
@@ -56,20 +63,21 @@ function renderClass(studentParams) { //QUESTO VA SISTEMATO PER IL NUOVO FE
 }
 
 function editStudent(e) {
-    let idStudent = e.target.id //id dello studente dove ho appena cliccato 
-    var idParent = e.target.parentElement.id; //id della classe padre (la ClassRoom dello studente)
-    let isStudent = mapClasses.get(Number(idParent)).studentClass.find(elem => elem.id == idStudent)
-    console.log(isStudent)
+  let idStudent = e.target.id; //id dello studente dove ho appena cliccato
+  var idParent = e.target.parentElement.id; //id della classe padre (la ClassRoom dello studente)
+  let isStudent = mapClasses
+    .get(Number(idParent))
+    .studentClass.find((elem) => elem.id == idStudent);
+  console.log(isStudent);
 }
 
 $(document).ready(function () {
-    $('#new-student').click(function () {
-        let student = createStudent()
-        mapClasses.get(Number(student[1])).studentClass.push(student[0])
-        renderClass(student)
-        console.log(mapClasses)
-    })
+  $("#new-student").click(function () {
+    let student = createStudent();
+    mapClasses.get(Number(student[1])).studentClass.push(student[0]);
+    renderClass(student);
+    console.log(mapClasses);
+  });
 
-    $(document).on('click', '.student', e => editStudent(e))
+  $(document).on("click", ".student", (e) => editStudent(e));
 });
-
